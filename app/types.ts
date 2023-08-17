@@ -11,7 +11,7 @@ export type NavLinks = {
 }
 
 export type NearEarthObjects = {
-  "2023-08-08": Asteroid[];
+  [key: string]: Asteroid[];
 }
 
 export type Asteroid = {
