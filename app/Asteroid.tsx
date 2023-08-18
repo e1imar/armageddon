@@ -12,7 +12,7 @@ type Props = Asteroid & {
   setStore: React.Dispatch<React.SetStateAction<Store>>
 }
 
-const round = (val: number | string) => Math.round(Number(val)),
+export const round = (val: number | string) => Math.round(Number(val)),
 num_word = (value: number, words: string[]) => {
 	value = Math.abs(value) % 100
 	var num = value % 10
