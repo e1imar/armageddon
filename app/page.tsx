@@ -13,15 +13,5 @@ async function getData() {
 export default async () => {
   const data = await getData()
 
-  return <>
-    <header>
-      <h1>armageddon 2023</h1>
-      <p>ООО "Команда им. Б. Уиллиса".</p>
-      <p>Взрываем астериоды с 1998 года.</p>
-    </header>
-    <main>
-      <Asteroids data={data}/>
-    </main>
-    <footer>© Все права и планета защищены</footer>
-  </>
+  return <Asteroids data={data}/>
 }

@@ -1,9 +1,15 @@
 import { Asteroid, Unit } from "./types"
 import Image from "next/image"
 
+
+type Store = {
+  asts: Asteroid[]
+  nextPage: string
+}
+
 type Props = Asteroid & {
   unit: Unit
-  setAsts: React.Dispatch<React.SetStateAction<Asteroid[]>>
+  setStore: React.Dispatch<React.SetStateAction<Store>>
 }
 
 const round = (val: number | string) => Math.round(Number(val)),
@@ -16,13 +22,13 @@ num_word = (value: number, words: string[]) => {
 	return words[2]
 }
 
-export default ({unit, setAsts, id, close_approach_data, name, estimated_diameter, ordered, is_potentially_hazardous_asteroid}: Props ) => {
+export default ({unit, setStore, id, close_approach_data, name, estimated_diameter, ordered, is_potentially_hazardous_asteroid}: Props ) => {
   const {close_approach_date_full, miss_distance} = close_approach_data[0],
   renderedUnit = round(miss_distance[unit]),
   lunarWord = num_word(renderedUnit, ['лунная орбита', 'лунной орбиты', 'лунных орбит']),
   diameter = round(estimated_diameter.meters.estimated_diameter_min),
   imageSize = diameter < 100 ? {width: 22, height: 24} : {width: 37, height: 40},
-  reserve = () => setAsts(prev => prev.map(ast => ast.id === id ? {...ast, ordered: true} : ast))
+  reserve = () => setStore(prev => ({...prev, asts: prev.asts.map(ast => ast.id === id ? {...ast, ordered: true} : ast)}))
 
   return <article>
     <div>
