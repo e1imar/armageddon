@@ -25,6 +25,7 @@ export type Asteroid = {
   is_potentially_hazardous_asteroid: boolean;
   close_approach_data:               CloseApproachDatum[];
   is_sentry_object:                  boolean;
+  ordered?: boolean;
 }
 
 export type CloseApproachDatum = {

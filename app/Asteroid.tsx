@@ -3,7 +3,7 @@ import Image from "next/image"
 
 type Props = Asteroid & {
   unit: Unit
-  orderable: boolean
+  setAsts: React.Dispatch<React.SetStateAction<Asteroid[]>>
 }
 
 const round = (val: number | string) => Math.round(Number(val)),
@@ -16,12 +16,13 @@ num_word = (value: number, words: string[]) => {
 	return words[2]
 }
 
-export default ({unit, close_approach_data, name, estimated_diameter, orderable, is_potentially_hazardous_asteroid}: Props ) => {
+export default ({unit, setAsts, id, close_approach_data, name, estimated_diameter, ordered, is_potentially_hazardous_asteroid}: Props ) => {
   const {close_approach_date_full, miss_distance} = close_approach_data[0],
   renderedUnit = round(miss_distance[unit]),
   lunarWord = num_word(renderedUnit, ['лунная орбита', 'лунной орбиты', 'лунных орбит']),
   diameter = round(estimated_diameter.meters.estimated_diameter_min),
-  imageSize = diameter < 100 ? {width: 22, height: 24} : {width: 37, height: 40}
+  imageSize = diameter < 100 ? {width: 22, height: 24} : {width: 37, height: 40},
+  reserve = () => setAsts(prev => prev.map(ast => ast.id === id ? {...ast, ordered: true} : ast))
 
   return <article>
     <div>
@@ -31,7 +32,7 @@ export default ({unit, close_approach_data, name, estimated_diameter, orderable,
       <span>{name}</span><br/>
       <span>{diameter} м</span>
     </div>
-    {orderable && <button type="button">заказать</button>}
+    {ordered ? <span>в корзине</span> : <button type="button" onClick={reserve}>заказать</button>}
     {is_potentially_hazardous_asteroid && <span>опасен</span>}
   </article>
 }

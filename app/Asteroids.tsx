@@ -4,15 +4,16 @@ import { useState } from "react"
 import { Asteroid as AsteroidType, Data, Unit } from "./types"
 import Asteroid from "./Asteroid"
 import Scroll from "react-infinite-scroll-component"
+import useLocalStorageState from "use-local-storage-state"
 
 type Props = {
   data: Data
 }
 
 export default ({data}: Props) => {
-  const [asts, setAsts] = useState(Object.values(data.near_earth_objects)[0]),
+  const [asts, setAsts] = useLocalStorageState('Asteroids', {defaultValue: Object.values(data.near_earth_objects)[0]}),
   [unit, setUnit] = useState<Unit>('kilometers'),
-  astsUI = asts.map(ast => <li key={ast.id}><Asteroid {...ast} unit={unit} orderable/></li>),
+  astsUI = asts.map(ast => <li key={ast.id}><Asteroid {...ast} unit={unit} setAsts={setAsts}/></li>),
   [nextPage, setNextPage] = useState(data.links.next),
   fetchData = async () => {  
     try {
