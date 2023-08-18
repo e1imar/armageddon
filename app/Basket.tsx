@@ -3,10 +3,11 @@
 import useLocalStorageState from "use-local-storage-state"
 import { useRouter } from "next/navigation"
 import { num_word } from "./Asteroid"
+import { Store } from "./types"
 
 export default () => {
-  const [store] = useLocalStorageState('Asteroids'),
-  quant = store.asts.filter(ast => ast.ordered).length,
+  const [store] = useLocalStorageState<Store>('Asteroids'),
+  quant = store?.asts.filter(ast => ast.ordered).length ?? 0,
   astWord = num_word(quant, ['астероид', 'астероида', 'астероидов']),
   router = useRouter()
 

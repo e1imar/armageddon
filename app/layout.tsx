@@ -1,7 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Basket from './Basket'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,7 +24,6 @@ export default function RootLayout({
         </header>
         <main>
           {children}
-          <Basket/>
         </main>
         <footer>© Все права и планета защищены</footer>
       </body>

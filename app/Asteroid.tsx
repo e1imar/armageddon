@@ -1,11 +1,5 @@
-import { Asteroid, Unit } from "./types"
+import { Asteroid, Store, Unit } from "./types"
 import Image from "next/image"
-
-
-type Store = {
-  asts: Asteroid[]
-  nextPage: string
-}
 
 type Props = Asteroid & {
   unit: Unit

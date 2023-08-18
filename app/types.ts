@@ -67,3 +67,10 @@ export type Feet = {
 export type Asteroid_Links = {
   self: string;
 }
+
+
+export type Store = {
+  asts: Asteroid[]
+  nextPage: string
+  unit: Unit
+}

@@ -1,4 +1,5 @@
 import Asteroids from "./Asteroids"
+import Basket from "./Basket"
 
 const date = new Date().toISOString().split('T')[0]
 
@@ -13,5 +14,8 @@ async function getData() {
 export default async () => {
   const data = await getData()
 
-  return <Asteroids data={data}/>
+  return <>
+    <Asteroids data={data}/>
+    <Basket/>
+  </>
 }
