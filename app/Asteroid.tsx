@@ -18,7 +18,7 @@ num_word = (value: number, words: string[]) => {
 }
 
 export default ({unit, setStore, id, close_approach_data, name, estimated_diameter, ordered, is_potentially_hazardous_asteroid}: Props ) => {
-  const {close_approach_date_full, miss_distance} = close_approach_data[0],
+  const {close_approach_date, miss_distance} = close_approach_data[0],
   renderedUnit = round(miss_distance[unit]),
   lunarWord = num_word(renderedUnit, ['лунная орбита', 'лунной орбиты', 'лунных орбит']),
   diameter = round(estimated_diameter.meters.estimated_diameter_min),
@@ -31,7 +31,7 @@ export default ({unit, setStore, id, close_approach_data, name, estimated_diamet
   return <Link href={id}>
     <article>
       <div>
-        <time dateTime={close_approach_date_full}>{close_approach_date_full}</time><br/>
+        <time dateTime={close_approach_date}>{close_approach_date}</time><br/>
         <span>{renderedUnit} {unit === 'lunar' ? lunarWord : 'км'}</span><br/>
         <Image src='/pngegg 1.svg' alt="asteroid" {...imageSize}/>
         <span>{name}</span><br/>
