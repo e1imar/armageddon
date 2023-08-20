@@ -70,7 +70,6 @@ export type Asteroid_Links = {
 
 
 export type Store = {
-  asts: Asteroid[]
-  nextPage: string
+  orderedAsts: Asteroid[]
   unit: Unit
 }

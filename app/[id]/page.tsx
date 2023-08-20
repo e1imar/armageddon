@@ -21,8 +21,7 @@ translate = (name: string) => {
 
 export default async ({params}: {params: {id: string}}) => {
   const {name, close_approach_data, estimated_diameter, is_potentially_hazardous_asteroid}: Asteroid = await getData(params.id),
-  relevantApproach = close_approach_data.filter(data => new Date(data.close_approach_date_full) > new Date),
-  approachList = relevantApproach.map(app => <li key={app.close_approach_date_full}>
+  approachList = close_approach_data.map(app => <li key={app.close_approach_date_full}>
     <time dateTime={app.close_approach_date_full}>{app.close_approach_date}</time><br/>
     <div>{round(app.miss_distance.kilometers)} км</div>
     <div>Относительная скорость: {round(app.relative_velocity.kilometers_per_hour)} км/ч</div>

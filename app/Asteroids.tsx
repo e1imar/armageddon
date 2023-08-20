@@ -1,31 +1,35 @@
 "use client"
 
-import { Asteroid as AsteroidType, Data, Unit } from "./types"
+import { Asteroid as AsteroidType, Data, Store, Unit } from "./types"
 import Asteroid from "./Asteroid"
 import Scroll from "react-infinite-scroll-component"
 import useLocalStorageState from "use-local-storage-state"
+import { useState } from "react"
 
 type Props = {
   data: Data
 }
 
 export default ({data}: Props) => {
-  const [store, setStore] = useLocalStorageState('Asteroids', {defaultValue: {
-    asts: Object.values(data.near_earth_objects)[0],
-    nextPage: data.links.next,
+  const [asts, setAsts] = useState(Object.values(data.near_earth_objects)[0]),
+  [store, setStore] = useLocalStorageState<Store>('Asteroids', {defaultValue: {
+    orderedAsts: [],
     unit: 'kilometers' as Unit
   }}),
-  astsUI = store.asts.map(ast => <li key={ast.id}><Asteroid {...ast} unit={store.unit} setStore={setStore}/></li>),
+  [nextPage, setNextPage] = useState(data.links.next),
+  astsList = asts.map(ast => {
+    const ordered = store.orderedAsts?.some(orderedAst => ast.id === orderedAst.id)
+    return <li key={ast.id}>
+      <Asteroid ast={ast} unit={store.unit} setStore={setStore} ordered={ordered}/>
+    </li>
+  }),
   fetchData = async () => {  
     try {
-      const response = await fetch(store.nextPage)
+      const response = await fetch(nextPage)
       const data = await response.json()
-  
-      setStore(prev => ({
-        ...prev,
-        asts: [...prev.asts, ...Object.values(data.near_earth_objects)[0] as AsteroidType[]],
-        nextPage: data.links.next
-      }))
+
+      setAsts(prev => [...prev, ...Object.values(data.near_earth_objects)[0] as AsteroidType[]])
+      setNextPage(data.links.next)
     } catch (error) {console.log(error)}
   };
 
@@ -33,12 +37,12 @@ export default ({data}: Props) => {
     <h2>Ближайшие подлёты астероидов</h2>
     <button type="button" onClick={() => setStore(prev => ({...prev, unit: 'kilometers'}))}>в километрах</button> | <button type="button" onClick={() => setStore(prev => ({...prev, unit: 'lunar'}))}>в лунных орбитах</button>
     <Scroll
-    dataLength={store.asts.length}
+    dataLength={asts.length}
     next={fetchData}
-    hasMore={!!store.nextPage}
+    hasMore={!!nextPage}
     loader={<h4>Загрузка...</h4>}
     >
-      <ul>{astsUI}</ul>
+      <ul>{astsList}</ul>
     </Scroll>
   </>
 }

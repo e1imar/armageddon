@@ -7,7 +7,7 @@ import { Store } from "./types"
 
 export default () => {
   const [store] = useLocalStorageState<Store>('Asteroids'),
-  quant = store?.asts.filter(ast => ast.ordered).length ?? 0,
+  quant = store?.orderedAsts?.length ?? 0,
   astWord = num_word(quant, ['астероид', 'астероида', 'астероидов']),
   router = useRouter()
 
@@ -16,6 +16,6 @@ export default () => {
       <h3>Корзина</h3>
       <div>{quant} {astWord}</div>
     </div>
-    <button type="button" onClick={() => router.push('/basket')}>Отправить</button>
+    <button type="button" onClick={() => router.push('/order')}>Отправить</button>
   </div>
 }
