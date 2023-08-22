@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Asteroid, Store, Unit } from "./types"
 import Image from "next/image"
+import css from './asteroid.module.css'
 
 type Props = {
   ast: Asteroid
@@ -31,17 +32,19 @@ export default ({unit, setStore, ast, ordered}: Props ) => {
     setStore(prev => prev.orderedAsts?.length ?  {...prev, orderedAsts: [...prev.orderedAsts, ast]} : {...prev, orderedAsts: [ast]})
   }
 
-  return <Link href={id}>
+  return <Link href={id} className={css.asteroid}>
     <article>
       <div>
-        <time dateTime={close_approach_date}>{close_approach_date}</time><br/>
-        <span>{renderedUnit} {unit === 'lunar' ? lunarWord : 'км'}</span><br/>
-        <Image src='/pngegg 1.svg' alt="asteroid" {...imageSize}/>
-        <span>{name}</span><br/>
-        <span>{diameter} м</span>
+        <time dateTime={close_approach_date} className={css.time}>{close_approach_date}</time>
+        <span className={css.distance}>{renderedUnit} {unit === 'lunar' ? lunarWord : 'км'}</span>
+        <Image src='/pngegg 1.svg' alt="asteroid" {...imageSize} className={css.img}/>
+        <span className={css.nameCont}>
+          <span className={css.name}>{name}</span>
+          <span className={css.size}>Ø {diameter} м</span>
+        </span>
       </div>
-      {ordered ? <span>в корзине</span> : <button type="button" onClick={reserve}>заказать</button>}
-      {is_potentially_hazardous_asteroid && <span>опасен</span>}
+      {ordered ? <span className={`${css.reserve} ${css.inBasket}`}>в корзине</span> : <button type="button" onClick={reserve} className={css.reserve}>заказать</button>}
+      {is_potentially_hazardous_asteroid && <span className={css.hazard}>Опасен</span>}
     </article>
   </Link>
 }

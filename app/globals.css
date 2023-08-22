@@ -17,6 +17,9 @@
 }
 
 body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -24,4 +27,12 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  padding: 10px 4.2%;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 36px;
+  margin-bottom: 9px;
 }

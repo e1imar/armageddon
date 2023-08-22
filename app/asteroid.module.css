@@ -1,0 +1,79 @@
+.time {
+  display: block;
+  font-size: 24px;
+  margin-bottom: 1px;
+}
+
+.nameCont {
+  display: inline-flex;
+  flex-direction: column;
+  margin-bottom: 4px;
+}
+
+.name {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.size {font-size: 12px;}
+
+.img {
+  display: inline-block;
+  margin: 0 8.5px;
+  position: relative;
+  top: 7px;
+  height: 40px;
+}
+
+.distance {
+  display: inline-block;
+  margin-bottom: 22px;
+  position: relative;
+}
+
+.distance:before {
+  content: '◄';
+  color: gray;
+  font-size: 7px;
+  line-height: 0px;
+  display: inline-block;
+  position: absolute;
+  left: -2px;
+  bottom: -8.5px;
+  width: 100%;
+  border-bottom: solid 1px gray;
+}
+
+.distance:after {
+  content: '►';
+  font-size: 7px;
+  color: gray;
+  position: absolute;
+  bottom: -13px;
+  right: -2px;
+}
+
+.reserve {
+  background-color: #F8660026;
+  color: orange;
+  border-radius: 16px;
+  padding: 3.6px 11px;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  margin-right: 11px;
+}
+
+.inBasket {
+  display: inline-block;
+  color: #F5DED9
+}
+
+.hazard {font-size: 14px;}
+
+.hazard:before {
+  content: '⚠';
+  color: yellow;
+  margin-right: 5px;
+}

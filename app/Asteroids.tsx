@@ -5,6 +5,7 @@ import Asteroid from "./Asteroid"
 import Scroll from "react-infinite-scroll-component"
 import useLocalStorageState from "use-local-storage-state"
 import { useState } from "react"
+import css from './asteroids.module.css'
 
 type Props = {
   data: Data
@@ -19,7 +20,7 @@ export default ({data}: Props) => {
   [nextPage, setNextPage] = useState(data.links.next),
   astsList = asts.map(ast => {
     const ordered = store.orderedAsts?.some(orderedAst => ast.id === orderedAst.id)
-    return <li key={ast.id}>
+    return <li key={ast.id} className={css.list}>
       <Asteroid ast={ast} unit={store.unit} setStore={setStore} ordered={ordered}/>
     </li>
   }),
@@ -35,14 +36,19 @@ export default ({data}: Props) => {
 
   return <>
     <h2>Ближайшие подлёты астероидов</h2>
-    <button type="button" onClick={() => setStore(prev => ({...prev, unit: 'kilometers'}))}>в километрах</button> | <button type="button" onClick={() => setStore(prev => ({...prev, unit: 'lunar'}))}>в лунных орбитах</button>
+    <button type="button"
+    onClick={() => setStore(prev => ({...prev, unit: 'kilometers'}))}
+    className={`${store.unit !== 'kilometers' && css.NotSelected}`}
+    >в километрах</button> | <button type="button"
+    onClick={() => setStore(prev => ({...prev, unit: 'lunar'}))}
+    className={`${store.unit !== 'lunar' && css.NotSelected}`}>в лунных орбитах</button>
     <Scroll
     dataLength={asts.length}
     next={fetchData}
     hasMore={!!nextPage}
     loader={<h4>Загрузка...</h4>}
     >
-      <ul>{astsList}</ul>
+      <ul className={css.lists}>{astsList}</ul>
     </Scroll>
   </>
 }

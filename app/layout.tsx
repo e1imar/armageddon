@@ -1,8 +1,13 @@
+import Link from 'next/link'
 import './globals.css'
+import css from './layout.module.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Passion_One } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const passion = Passion_One({
+  subsets: ['latin'],
+  weight: '400'
+})
 
 export const metadata: Metadata = {
   title: 'Armageddon 2023',
@@ -16,13 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <header>
-          <h1>armageddon 2023</h1>
-          <p>ООО "Команда им. Б. Уиллиса".</p>
-          <p>Взрываем астериоды с 1998 года.</p>
+      <body>
+        <header className={css.header}>
+          <h1 className={`${passion.className} ${css.h1}`}><Link href='/'>armageddon 2023</Link></h1>
+          <p>ООО “Команда им. Б. Уиллиса”.</p>
+          <p>Взрываем астероиды с 1998 года.</p>
         </header>
-        <main>
+        <main className={css.main}>
           {children}
         </main>
         <footer>© Все права и планета защищены</footer>
