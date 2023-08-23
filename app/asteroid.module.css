@@ -60,7 +60,7 @@
 
 .reserve {
   background-color: #F8660026;
-  color: orange;
+  color: #F86600;
   border-radius: 16px;
   padding: 3.6px 11px;
   letter-spacing: 1.3px;
@@ -69,10 +69,18 @@
   text-transform: uppercase;
   margin-right: 11px;
 }
+.reserve:hover {
+  background-color: #F86600;
+  color: #fff;
+}
 
 .inBasket {
   display: none;
   color: #F5DED9
+}
+.inBasket:hover {
+  background-color: #F8660026;
+  color: #F5DED9;
 }
 
 .hazard {font-size: 14px}

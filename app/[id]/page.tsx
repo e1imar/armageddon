@@ -31,7 +31,7 @@ export default async ({params}: {params: {id: string}}) => {
     <div>Орбитальное тело: {translate(app.orbiting_body)}</div>
   </li>)
 
-  return <>
+  return <div>
     <article className={pageCSS.asteroid}>
       <h2>{name}</h2>
       <span  className={astCSS.size}>Ø {round(estimated_diameter.meters.estimated_diameter_min)} м</span>
@@ -41,5 +41,5 @@ export default async ({params}: {params: {id: string}}) => {
       <h3 className={pageCSS.h3}>Сближения астероида</h3>
       <ul>{approachList}</ul>
     </section>
-  </>
+  </div>
 }

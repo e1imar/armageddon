@@ -32,7 +32,7 @@ export default ({data}: Props) => {
     } catch (error) {console.log(error)}
   };
 
-  return <>
+  return <section>
     <h2>Ближайшие подлёты астероидов</h2>
     <button type="button"
     onClick={() => setStore(prev => ({...prev, unit: 'kilometers'}))}
@@ -48,5 +48,5 @@ export default ({data}: Props) => {
     >
       <ul className="astList">{astsList}</ul>
     </Scroll>
-  </>
+  </section>
 }

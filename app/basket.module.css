@@ -20,3 +20,15 @@
   font-weight: 700;
   border-radius: 40px;
 }
+
+@media screen and (min-width: 1025px) {
+  .basket {
+    position: static;
+    flex-direction: column;
+    width: auto;
+    height: 161px;
+    border-radius: 24px;
+  }
+
+  .button {padding: 12px 16px}
+}

@@ -8,11 +8,25 @@
 .header {margin-bottom: 33px}
 
 .main {
-  padding-left: 16%;
+  margin-left: 16%;
   margin-bottom: 40px;
 }
 
 .footer {
   position:absolute;
   bottom: 10px;
+}
+
+@media screen and (min-width: 1025px) {
+  .header {margin-bottom: 25px;}
+  .main {
+    display: flex;
+    margin-left: 35%;
+    justify-content: space-between;
+    max-width: 550px;
+  }
+}
+
+@media screen and (min-width: 1356px) {
+  .main {margin-left: 38.7%;}
 }
