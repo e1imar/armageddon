@@ -10,7 +10,7 @@ getData = async () => {
   return res.json()
 }
 
-export default async () => {
+export default async function Root() {
   const data = await getData()
 
   return <>

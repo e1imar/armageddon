@@ -20,7 +20,7 @@ num_word = (value: number, words: string[]) => {
 	return words[2]
 }
 
-export default ({unit, setStore, ast, ordered}: Props ) => {
+export default function Asteroid({unit, setStore, ast, ordered}: Props ) {
   const {id, close_approach_data, name, estimated_diameter, is_potentially_hazardous_asteroid} = ast,
   {close_approach_date, miss_distance} = close_approach_data[0],
   renderedUnit = round(miss_distance[unit]),

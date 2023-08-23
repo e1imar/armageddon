@@ -21,7 +21,7 @@ translate = (name: string) => {
 
 
 
-export default async ({params}: {params: {id: string}}) => {
+export default async function AsteroidPage({params}: {params: {id: string}}) {
   const {name, close_approach_data, estimated_diameter, is_potentially_hazardous_asteroid}: Asteroid = await getData(params.id),
 
   approachList = close_approach_data.map(app => <li key={app.close_approach_date_full} className={pageCSS.approach}>

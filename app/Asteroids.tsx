@@ -11,7 +11,7 @@ type Props = {
   data: Data
 }
 
-export default ({data}: Props) => {
+export default function Asteroids({data}: Props) {
   const [asts, setAsts] = useState(Object.values(data.near_earth_objects)[0]),
   [store, setStore] = useLocalStorageState<Store>('Asteroids', {defaultValue: {
     orderedAsts: [],

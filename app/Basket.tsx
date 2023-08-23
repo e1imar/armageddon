@@ -6,7 +6,7 @@ import { num_word } from "./Asteroid"
 import { Store } from "./types"
 import css from './basket.module.css'
 
-export default () => {
+export default function Basket() {
   const [store] = useLocalStorageState<Store>('Asteroids'),
   quant = store?.orderedAsts?.length ?? 0,
   astWord = num_word(quant, ['астероид', 'астероида', 'астероидов']),
