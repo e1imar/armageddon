@@ -4,6 +4,7 @@ import useLocalStorageState from "use-local-storage-state"
 import { useRouter } from "next/navigation"
 import { num_word } from "./Asteroid"
 import { Store } from "./types"
+import css from './basket.module.css'
 
 export default () => {
   const [store] = useLocalStorageState<Store>('Asteroids'),
@@ -11,11 +12,11 @@ export default () => {
   astWord = num_word(quant, ['астероид', 'астероида', 'астероидов']),
   router = useRouter()
 
-  if (quant > 0) return <div>
+  if (quant > 0) return <div className={css.basket}>
     <div>
-      <h3>Корзина</h3>
+      <h3 className={css.h}>Корзина</h3>
       <div>{quant} {astWord}</div>
     </div>
-    <button type="button" onClick={() => router.push('/order')}>Отправить</button>
+    <button type="button" onClick={() => router.push('/order')} className={css.button}>Отправить</button>
   </div>
 }

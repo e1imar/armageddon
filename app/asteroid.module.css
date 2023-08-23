@@ -1,3 +1,5 @@
+.asteroid {margin: 20px 0 21px 0}
+
 .time {
   display: block;
   font-size: 24px;
@@ -66,11 +68,11 @@
 }
 
 .inBasket {
-  display: inline-block;
+  display: none;
   color: #F5DED9
 }
 
-.hazard {font-size: 14px;}
+.hazard {font-size: 14px}
 
 .hazard:before {
   content: '⚠';

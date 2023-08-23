@@ -30,7 +30,7 @@ export default function RootLayout({
         <main className={css.main}>
           {children}
         </main>
-        <footer>© Все права и планета защищены</footer>
+        <footer className={css.footer}>© Все права и планета защищены</footer>
       </body>
     </html>
   )

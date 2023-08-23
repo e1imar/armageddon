@@ -7,4 +7,12 @@
 
 .header {margin-bottom: 33px}
 
-.main {padding-left: 16%}
+.main {
+  padding-left: 16%;
+  margin-bottom: 40px;
+}
+
+.footer {
+  position:absolute;
+  bottom: 10px;
+}

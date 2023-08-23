@@ -7,9 +7,7 @@ import Asteroid from "../Asteroid"
 export default () => {
   const [store] = useLocalStorageState<Store>('Asteroids'),
   asts = store?.orderedAsts ?? [],
-  astLists = asts.map(ast => <li key={ast.id}>
-    <Asteroid ast={ast} unit={store?.unit ?? 'kilometers'} setStore={() => {}} ordered/>
-  </li>)
+  astLists = asts.map(ast => <Asteroid key={ast.id} ast={ast} unit={store?.unit ?? 'kilometers'} setStore={() => {}} ordered/>)
   return <>
     <h2>{asts.length ? 'Заказ отправлен!' : 'Нет заказов'}</h2>
     <ul>{astLists}</ul>

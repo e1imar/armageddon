@@ -20,9 +20,7 @@ export default ({data}: Props) => {
   [nextPage, setNextPage] = useState(data.links.next),
   astsList = asts.map(ast => {
     const ordered = store.orderedAsts?.some(orderedAst => ast.id === orderedAst.id)
-    return <li key={ast.id} className={css.list}>
-      <Asteroid ast={ast} unit={store.unit} setStore={setStore} ordered={ordered}/>
-    </li>
+    return <Asteroid key={ast.id} ast={ast} unit={store.unit} setStore={setStore} ordered={ordered}/>
   }),
   fetchData = async () => {  
     try {
@@ -46,9 +44,9 @@ export default ({data}: Props) => {
     dataLength={asts.length}
     next={fetchData}
     hasMore={!!nextPage}
-    loader={<h4>Загрузка...</h4>}
+    loader={<div className={css.loading}></div>}
     >
-      <ul className={css.lists}>{astsList}</ul>
+      <ul className="astList">{astsList}</ul>
     </Scroll>
   </>
 }

@@ -1,0 +1,22 @@
+.basket {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  background-color: #232526;
+}
+
+.h {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.button {
+  padding: 8px 16px;
+  background-color: #F86600;
+  font-weight: 700;
+  border-radius: 40px;
+}
