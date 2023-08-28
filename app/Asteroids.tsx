@@ -2,10 +2,10 @@
 
 import { Asteroid as AsteroidType, Data, Store, Unit } from "./types"
 import Asteroid from "./Asteroid"
-import Scroll from "react-infinite-scroll-component"
 import useLocalStorageState from "use-local-storage-state"
 import { useState } from "react"
 import css from './asteroids.module.css'
+import InfiniteScroll from 'react-infinite-scroller';
 
 type Props = {
   data: Data
@@ -40,13 +40,15 @@ export default function Asteroids({data}: Props) {
     >в километрах</button> | <button type="button"
     onClick={() => setStore(prev => ({...prev, unit: 'lunar'}))}
     className={`${store.unit !== 'lunar' && css.NotSelected}`}>в лунных орбитах</button>
-    <Scroll
-    dataLength={asts.length}
-    next={fetchData}
-    hasMore={!!nextPage}
-    loader={<div className={css.loading}></div>}
-    >
-      <ul className="astList">{astsList}</ul>
-    </Scroll>
+    <ul className="astList">
+      <InfiniteScroll
+          pageStart={0}
+          loadMore={fetchData}
+          hasMore={!!nextPage}
+          loader={<div className={`loader ${css.loading}`} key={0}></div>}
+      >
+        {astsList}
+      </InfiniteScroll>
+    </ul>
   </section>
 }
