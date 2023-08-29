@@ -3,7 +3,7 @@ import Basket from "./Basket"
 
 const date = new Date().toISOString().split('T')[0],
 getData = async () => {
-  const res = await fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&end_date=${date}&detailed=false&api_key=${process.env.API_KEY}`)
+  const res = await fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&end_date=${date}&detailed=false&api_key=${process.env.API_KEY}`, {next: {revalidate: 19200}})
  
   if (!res.ok) throw new Error('Failed to fetch data')
  
